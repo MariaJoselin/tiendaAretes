@@ -82,10 +82,6 @@ export default function ProductosPage() {
             >
               Agregar al carrito
             </button>
-                onClick={() => agregarAlCarrito(producto)}
-                className="boton-agregar" >
-                 Agregar al carrito
-             </button>
           </article>
         ))}
       </section>
