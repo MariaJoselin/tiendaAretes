@@ -63,8 +63,8 @@ const { agregarAlCarrito } = useCarrito();
             <p className="text-gray-600">{producto.precio}</p>
             <button
                 onClick={() => agregarAlCarrito(producto)}
-                className="bg-green-500 text-white px-4 py-2 rounded mt-2" >
-                Agregar al carrito
+                className="boton-agregar" >
+                 Agregar al carrito
              </button>
           </article>
         ))}

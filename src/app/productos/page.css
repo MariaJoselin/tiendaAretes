@@ -14,3 +14,26 @@
 .tarjeta:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
+.boton-agregar {
+  background-color: #ec4899; /* rosa fuerte (Tailwind pink-500) */
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px; /* estilo pill */
+  margin-top: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.boton-agregar:hover {
+  background-color: #db2777; /* rosa más oscuro (pink-600) */
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
+  transform: translateY(-2px);
+}
+
+.boton-agregar:active {
+  background-color: #be185d; /* rosa aún más oscuro (pink-700) */
+  transform: scale(0.98);
+}
