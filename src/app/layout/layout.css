@@ -1,45 +1,82 @@
 /* app/layout/layout.css */
 
 body {
-    background-color: #ffffff;
-    color: #2d2d2d;
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .header {
-    background-color: #fbcfe8;
-    padding: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .navbar {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    font-weight: 600;
-    color: #9d174d;
-  }
-  
-  .navbar a {
-    text-decoration: none;
-    color: #9d174d;
-  }
-  
-  .navbar a:hover {
-    color: #be185d;
-  }
-  
-  .main-content {
-    padding: 1rem;
-  }
-  
-  .footer {
-    background-color: #fce7f3;
-    text-align: center;
-    font-size: 0.875rem;
-    color: #9d174d;
-    padding: 1rem 0;
-    margin-top: 3rem;
-  }
-  
+  background-color: #ffffff;
+  color: #2d2d2d;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.header {
+  background-color: #fbcfe8;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  font-weight: 600;
+  color: #9d174d;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #9d174d;
+  font-weight: 600;
+  font-size: 1rem;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #be185d;
+  border-bottom: 2px solid #be185d;
+  outline: none;
+}
+
+.carrito-link {
+  font-size: 1.8rem;
+  color: #f43f5e;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.carrito-link:hover,
+.carrito-link:focus {
+  color: #d0264d;
+  outline: none;
+}
+
+.icon {
+  font-size: 1.2rem;
+}
+
+.main-content {
+  padding: 1rem;
+}
+
+.footer {
+  background-color: #fce7f3;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #9d174d;
+  padding: 1rem 0;
+  margin-top: 3rem;
+}

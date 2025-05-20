@@ -1,17 +1,41 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const CarritoContext = createContext();
 
+function generarKey(producto) {
+  return `${producto.id}-${Date.now()}-${Math.random()}`;
+}
+
 export function CarritoProvider({ children }) {
-  const [carrito, setCarrito] = useState([]);
+  const [carrito, setCarrito] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("carrito");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return parsed.map((producto) => ({
+          ...producto,
+          key: producto.key || generarKey(producto),
+        }));
+      }
+    }
+    return [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  }, [carrito]);
 
   const agregarAlCarrito = (producto) => {
-    setCarrito((prev) => [...prev, producto]);
+    const nuevoProducto = {
+      ...producto,
+      key: generarKey(producto),
+    };
+    setCarrito((prev) => [...prev, nuevoProducto]);
   };
 
-  const eliminarDelCarrito = (id) => {
-    setCarrito((prev) => prev.filter((item, i) => i !== id));
+  const eliminarDelCarrito = (key) => {
+    setCarrito((prev) => prev.filter((item) => item.key !== key));
   };
 
   const vaciarCarrito = () => {
@@ -19,7 +43,9 @@ export function CarritoProvider({ children }) {
   };
 
   return (
-    <CarritoContext.Provider value={{ carrito, agregarAlCarrito, eliminarDelCarrito, vaciarCarrito }}>
+    <CarritoContext.Provider
+      value={{ carrito, agregarAlCarrito, eliminarDelCarrito, vaciarCarrito }}
+    >
       {children}
     </CarritoContext.Provider>
   );

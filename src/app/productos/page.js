@@ -2,11 +2,11 @@
 import "../productos/page.css";
 import { useState } from "react";
 import { useCarrito } from "@/context/CarritoContext";
+import Swal from "sweetalert2";
 
 export default function ProductosPage() {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("Todas");
-const { agregarAlCarrito } = useCarrito();
-
+  const { agregarAlCarrito } = useCarrito();
 
   const productos = [
     { id: 1, nombre: "Aretes Sol", imagen: "/imagenes/primavera1.jpeg", precio: "$120", categoria: "Primavera" },
@@ -21,14 +21,29 @@ const { agregarAlCarrito } = useCarrito();
     { id: 10, nombre: "Aretes Estrella", imagen: "/imagenes/Arcoiris2.jpeg", precio: "$110", categoria: "Arcoiris" },
   ];
 
-  // Filtrar según categoría
   const productosFiltrados =
     categoriaSeleccionada === "Todas"
       ? productos
       : productos.filter((p) => p.categoria === categoriaSeleccionada);
 
-  // Sacar las categorías únicas
   const categorias = ["Todas", ...new Set(productos.map((p) => p.categoria))];
+
+  const handleAgregar = (producto) => {
+    agregarAlCarrito(producto);
+
+    Swal.fire({
+      icon: "success",
+      title: "¡Producto agregado!",
+      text: `"${producto.nombre}" ha sido añadido a tu carrito.`,
+      timer: 1500,
+      showConfirmButton: false,
+      timerProgressBar: true,
+      position: "top-end",
+      toast: true,
+      background: "#fbcfe8",
+      color: "#9d174d",
+    });
+  };
 
   return (
     <main className="min-h-screen p-8 bg-pink-50">
@@ -62,10 +77,11 @@ const { agregarAlCarrito } = useCarrito();
             <h2 className="text-xl font-semibold text-pink-700">{producto.nombre}</h2>
             <p className="text-gray-600">{producto.precio}</p>
             <button
-                onClick={() => agregarAlCarrito(producto)}
-                className="bg-green-500 text-white px-4 py-2 rounded mt-2" >
-                Agregar al carrito
-             </button>
+              onClick={() => handleAgregar(producto)}
+              className="bg-green-500 text-white px-4 py-2 rounded mt-2"
+            >
+              Agregar al carrito
+            </button>
           </article>
         ))}
       </section>

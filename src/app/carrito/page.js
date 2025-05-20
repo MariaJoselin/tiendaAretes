@@ -1,14 +1,26 @@
 "use client";
+
+import { useState, useEffect } from "react";
 import "./carrito.css";
 import { useCarrito } from "@/context/CarritoContext";
 
 export default function CarritoPage() {
-  const { carrito, quitarDelCarrito } = useCarrito();
+  const { carrito, eliminarDelCarrito } = useCarrito();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const total = carrito.reduce((acc, producto) => {
-    const precioNum = parseFloat(producto.precio.replace("$", ""));
+    const precioNum = parseFloat(producto.precio.replace("$", "")) || 0;
     return acc + precioNum;
   }, 0);
+
+  if (!isMounted) {
+    // Opcional: mostrar un loader o nada mientras monta el cliente
+    return null;
+  }
 
   return (
     <main className="carrito-container">
@@ -19,7 +31,7 @@ export default function CarritoPage() {
       ) : (
         <div>
           {carrito.map((producto) => (
-            <div key={producto.id} className="item-carrito">
+            <div key={producto.key} className="item-carrito">
               <img src={producto.imagen} alt={producto.nombre} />
               <div className="item-info">
                 <p className="item-nombre">{producto.nombre}</p>
@@ -27,13 +39,13 @@ export default function CarritoPage() {
               </div>
               <button
                 className="btn-quitar"
-                onClick={() => quitarDelCarrito(producto.id)}
+                onClick={() => eliminarDelCarrito(producto.key)}
               >
                 Quitar
               </button>
             </div>
           ))}
-          <p className="total">Total: ${total}</p>
+          <p className="total">Total: ${total.toFixed(2)}</p>
         </div>
       )}
     </main>
