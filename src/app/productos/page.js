@@ -1,9 +1,12 @@
 "use client";
-import "../productos/page.css"
+import "../productos/page.css";
 import { useState } from "react";
+import { useCarrito } from "@/context/CarritoContext";
 
 export default function ProductosPage() {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("Todas");
+const { agregarAlCarrito } = useCarrito();
+
 
   const productos = [
     { id: 1, nombre: "Aretes Sol", imagen: "/imagenes/primavera1.jpeg", precio: "$120", categoria: "Primavera" },
@@ -58,6 +61,11 @@ export default function ProductosPage() {
             />
             <h2 className="text-xl font-semibold text-pink-700">{producto.nombre}</h2>
             <p className="text-gray-600">{producto.precio}</p>
+            <button
+                onClick={() => agregarAlCarrito(producto)}
+                className="bg-green-500 text-white px-4 py-2 rounded mt-2" >
+                Agregar al carrito
+             </button>
           </article>
         ))}
       </section>
