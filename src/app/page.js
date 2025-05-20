@@ -5,25 +5,27 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <main className="home-container">
-      <div className="home-header">
-        <img
-          src="/imagenes/logo3.png"
-          alt="logo Matatena"
-          className="logo"
-        />
+      <header className="home-header">
+        <figure>
+          <img
+            src="/imagenes/logo3.png"
+            alt="logo Matatena"
+            className="logo"
+          />
+        </figure>
         <h1 className="titulo">Bienvenida a MATATENA</h1>
         <p className="descripcion">
           Explora nuestros diseños únicos hechos a mano ✨
         </p>
-      </div>
+      </header>
 
-      <div className="boton-container">
+      <nav className="boton-container">
         <Link href="/productos">
           <button className="boton">Ver colección</button>
         </Link>
-      </div>
+      </nav>
 
-      <div className="info-grid">
+      <section className="info-grid">
         <section className="sobre-nosotros">
           <h2>Sobre Nosotros</h2>
           <p>
@@ -34,16 +36,16 @@ export default function HomePage() {
         </section>
 
         <section className="beneficios">
-          <div className="beneficio">
+          <article className="beneficio">
             <span>💎</span>
             <p>Diseños únicos</p>
-          </div>
-          <div className="beneficio">
+          </article>
+          <article className="beneficio">
             <span>👐</span>
             <p>Hecho a mano</p>
-          </div>
+          </article>
         </section>
-      </div>
+      </section>
     </main>
   );
 }

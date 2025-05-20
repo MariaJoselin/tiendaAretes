@@ -32,26 +32,25 @@ export default function ProductosPage() {
       <h1 className="text-3xl font-bold text-pink-700 mb-4 text-center">Nuestra Colección</h1>
 
       {/* Filtro por categoría */}
-      <div className="flex flex-wrap justify-center gap-4 mb-8">
+      <nav className="flex flex-wrap justify-center gap-4 mb-8" aria-label="Filtrar por categoría">
         {categorias.map((cat) => (
           <button
             key={cat}
             onClick={() => setCategoriaSeleccionada(cat)}
-            className={`py-2 px-4 rounded-full border-2 ${
-              categoriaSeleccionada === cat
-                ? "bg-pink-500 text-white border-pink-500"
-                : "border-pink-300 text-pink-700"
-            }`}
+            className={`py-2 px-4 rounded-full border-2 ${categoriaSeleccionada === cat
+              ? "bg-pink-500 text-white border-pink-500"
+              : "border-pink-300 text-pink-700"
+              }`}
           >
             {cat}
           </button>
         ))}
-      </div>
+      </nav>
 
       {/* Productos */}
-      <div className="grid-productos">
+      <section className="grid-productos">
         {productosFiltrados.map((producto) => (
-          <div key={producto.id} className="tarjeta">
+          <article key={producto.id} className="tarjeta">
             <img
               src={producto.imagen}
               alt={producto.nombre}
@@ -59,9 +58,9 @@ export default function ProductosPage() {
             />
             <h2 className="text-xl font-semibold text-pink-700">{producto.nombre}</h2>
             <p className="text-gray-600">{producto.precio}</p>
-          </div>
+          </article>
         ))}
-      </div>
+      </section>
     </main>
   );
 }
