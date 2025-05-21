@@ -25,9 +25,9 @@ nav button:hover {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 .boton-agregar {
-  background-color: #ec4899; /* rosa fuerte (Tailwind pink-500) */
+  background-color: #ec7ab3; /* rosa fuerte (Tailwind pink-500) */
   color: white;
-  font-weight: 600;
+  font-weight: 500;
   padding: 0.5rem 1.25rem;
   border-radius: 9999px; /* estilo pill */
   margin-top: 0.75rem;
@@ -46,4 +46,8 @@ nav button:hover {
 .boton-agregar:active {
   background-color: #be185d; /* rosa aún más oscuro (pink-700) */
   transform: scale(0.98);
+}
+.tarjeta p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
 }
