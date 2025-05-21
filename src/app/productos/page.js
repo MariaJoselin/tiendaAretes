@@ -9,16 +9,16 @@ export default function ProductosPage() {
   const { agregarAlCarrito } = useCarrito();
 
   const productos = [
-    { id: 1, nombre: "Aretes Sol", imagen: "/imagenes/primavera1.jpeg", precio: "$120", categoria: "Primavera" },
-    { id: 2, nombre: "Aretes Luna", imagen: "/imagenes/primavera2.jpeg", precio: "$150", categoria: "Primavera" },
-    { id: 3, nombre: "Aretes Sol", imagen: "/imagenes/primavera3.jpeg", precio: "$120", categoria: "Primavera" },
-    { id: 4, nombre: "Aretes Luna", imagen: "/imagenes/primavera4.jpeg", precio: "$150", categoria: "Primavera" },
-    { id: 5, nombre: "Aretes Flor", imagen: "/imagenes/valentines1.jpeg", precio: "$100", categoria: "Valentines" },
-    { id: 6, nombre: "Aretes Estrella", imagen: "/imagenes/valentines2.jpeg", precio: "$110", categoria: "Valentines" },
-    { id: 7, nombre: "Aretes Flor", imagen: "/imagenes/valentines3.jpeg", precio: "$100", categoria: "Valentines" },
-    { id: 8, nombre: "Aretes Estrella", imagen: "/imagenes/valentines4.jpeg", precio: "$110", categoria: "Valentines" },
-    { id: 9, nombre: "Aretes Flor", imagen: "/imagenes/Arcoiris1.jpeg", precio: "$100", categoria: "Arcoiris" },
-    { id: 10, nombre: "Aretes Estrella", imagen: "/imagenes/Arcoiris2.jpeg", precio: "$110", categoria: "Arcoiris" },
+    { id: 1, nombre: "Aretes Sol", imagen: "/imagenes/primavera1.jpeg", precio: "$120", categoria: "Primavera", descripcion: "Inspirados en la energía del sol, perfectos para primavera." },
+    { id: 2, nombre: "Aretes Luna", imagen: "/imagenes/primavera2.jpeg", precio: "$150", categoria: "Primavera", descripcion: "Inspirados en la energía del sol, perfectos para primavera." },
+    { id: 3, nombre: "Aretes Sol", imagen: "/imagenes/primavera3.jpeg", precio: "$120", categoria: "Primavera", descripcion: "Inspirados en la energía del sol, perfectos para primavera." },
+    { id: 4, nombre: "Aretes Luna", imagen: "/imagenes/primavera4.jpeg", precio: "$150", categoria: "Primavera", descripcion: "Inspirados en la energía del sol, perfectos para primavera." },
+    { id: 5, nombre: "Aretes Flor", imagen: "/imagenes/valentines1.jpeg", precio: "$100", categoria: "Valentines", descripcion: "Inspirados en la energía del sol, perfectos para primavera." },
+    { id: 6, nombre: "Aretes Estrella", imagen: "/imagenes/valentines2.jpeg", precio: "$110", categoria: "Valentines", descripcion: "Inspirados en la energía del sol, perfectos para primavera." },
+    { id: 7, nombre: "Aretes Flor", imagen: "/imagenes/valentines3.jpeg", precio: "$100", categoria: "Valentines", descripcion: "Inspirados en la energía del sol, perfectos para primavera." },
+    { id: 8, nombre: "Aretes Estrella", imagen: "/imagenes/valentines4.jpeg", precio: "$110", categoria: "Valentines", descripcion: "Inspirados en la energía del sol, perfectos para primavera." },
+    { id: 9, nombre: "Aretes Flor", imagen: "/imagenes/Arcoiris1.jpeg", precio: "$100", categoria: "Arcoiris", descripcion: "Inspirados en la energía del sol, perfectos para primavera." },
+    { id: 10, nombre: "Aretes Estrella", imagen: "/imagenes/Arcoiris2.jpeg", precio: "$110", categoria: "Arcoiris", descripcion: "Inspirados en la energía del sol, perfectos para primavera." },
   ];
 
   const productosFiltrados =
@@ -75,6 +75,7 @@ export default function ProductosPage() {
               className="w-full h-48 object-cover rounded-lg mb-4"
             />
             <h2 className="text-xl font-semibold text-pink-700">{producto.nombre}</h2>
+            <p className="text-gray-600 text-sm mb-2">{producto.descripcion}</p>
             <p className="text-gray-600">{producto.precio}</p>
             <button
               onClick={() => handleAgregar(producto)}
