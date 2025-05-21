@@ -1,55 +1,102 @@
-/* contacto.css */
-
 .contacto-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
   padding: 2rem;
-  max-width: 600px;
-  margin: auto;
   background-color: #fff0f5;
   min-height: 100vh;
   border-radius: 1rem;
+  flex-wrap: wrap;
+  font-family: sans-serif;
 }
 
-.titulo-contacto {
+.contacto-formulario {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.contacto-formulario h1 {
   text-align: center;
-  color: #be185d;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
+  color: #d63384;
 }
 
-.formulario-contacto {
+.formulario-contacto label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.formulario-contacto input,
+.formulario-contacto textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+.formulario-contacto button {
+  background-color: #d63384;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.formulario-contacto button:hover {
+  background-color: #c12776;
+}
+
+.contacto-extra {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.formulario-contacto label {
+.tarjeta {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta h2 {
+  text-align: center;
+  color: #d63384;
+  margin-bottom: 1rem;
+}
+
+.redes-sociales {
   display: flex;
-  flex-direction: column;
-  color: #831843;
-  font-weight: 500;
+  gap: 1rem;
+  justify-content: center;
 }
 
-.formulario-contacto input,
-.formulario-contacto textarea {
-  padding: 0.75rem;
-  border: 1px solid #f3cfe1;
-  border-radius: 0.5rem;
-  margin-top: 0.5rem;
-  font-size: 1rem;
+.redes-sociales a img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s;
 }
 
-.formulario-contacto button {
-  background-color: #ec4899;
-  color: white;
-  padding: 0.75rem;
+.redes-sociales a img:hover {
+  transform: scale(1.2);
+}
+
+iframe {
+  width: 100%;
+  height: 300px;
   border: none;
   border-radius: 0.5rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.formulario-contacto button:hover {
-  background-color: #db2777;
 }
