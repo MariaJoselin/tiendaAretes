@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';  // Hook para redirección
 import Link from 'next/link';
 
-export default function LoginPage() {
-    const router = useRouter();  // Inicializa router
+export default function RegisterPage() {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -17,7 +17,6 @@ export default function LoginPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-
         if (!validateEmail(email)) {
             setError('Por favor, ingresa un email válido');
             return;
@@ -26,17 +25,18 @@ export default function LoginPage() {
             setError('La contraseña debe tener al menos 6 caracteres');
             return;
         }
+        if (password !== confirmPassword) {
+            setError('Las contraseñas no coinciden');
+            return;
+        }
 
         setLoading(true);
 
         try {
-            // Simula llamada a backend
             await new Promise((resolve) => setTimeout(resolve, 1500));
-
-            // Aquí validación exitosa
-            router.push('/sitio');  // Redirige al home
+            alert('¡Registro exitoso! Por favor, inicia sesión.');
         } catch {
-            setError('Error en la autenticación, intenta de nuevo');
+            setError('Error en el registro, intenta de nuevo');
         } finally {
             setLoading(false);
         }
@@ -50,6 +50,7 @@ export default function LoginPage() {
                 {error && <p className="error-message">{error}</p>}
 
                 <form onSubmit={handleSubmit}>
+
                     <div>
                         <label htmlFor="email">Correo electrónico</label>
                         <input
@@ -73,18 +74,32 @@ export default function LoginPage() {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                             minLength={6}
-                            autoComplete="current-password"
+                            autoComplete="new-password"
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="confirmPassword">Confirmar contraseña</label>
+                        <input
+                            id="confirmPassword"
+                            type="password"
+                            placeholder="Repite tu contraseña"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                            minLength={6}
+                            autoComplete="new-password"
                         />
                     </div>
 
                     <button type="submit" disabled={loading}>
-                        {loading ? 'Ingresando...' : 'Entrar'}
+                        {loading ? 'Registrando...' : 'Crear Cuenta'}
                     </button>
                 </form>
 
                 <p className="register-text">
-                    ¿No tienes cuenta?{' '}
-                    <Link href="/registro">Regístrate</Link>
+                    ¿Ya tienes cuenta?{' '}
+                    <Link href="/">Inicia sesión</Link>
                 </p>
             </div>
         </div>

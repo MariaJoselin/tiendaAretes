@@ -1,0 +1,66 @@
+.productsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    padding: 0 1rem;
+}
+
+.card {
+    background-color: #fff8fb;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 16px rgba(214, 51, 108, 0.2);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.cardImage {
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.cardTitle {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #d6336c;
+    text-align: center;
+}
+
+.cardDescription {
+    margin-top: 0.5rem;
+    color: #8b5c7e;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.cardPrice {
+    margin-top: 1rem;
+    font-weight: 700;
+    color: #e91e63;
+    font-size: 1.125rem;
+}
+
+.addToCartBtn {
+    margin-top: auto;
+    margin-top: 1.5rem;
+    background: linear-gradient(90deg, #d6336c 0%, #e91e63 100%);
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(233, 30, 99, 0.4);
+    cursor: pointer;
+    transition: filter 0.3s ease;
+    border: none;
+}
+
+.addToCartBtn:hover {
+    filter: brightness(1.1);
+}

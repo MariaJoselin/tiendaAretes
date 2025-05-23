@@ -2,11 +2,13 @@
 import "../productos/page.css";
 import { useState } from "react";
 import { useCarrito } from "@/context/CarritoContext";
+import { useAuth } from "@/context/AuthContext";
 import Swal from "sweetalert2";
 
 export default function ProductosPage() {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("Todas");
   const { agregarAlCarrito } = useCarrito();
+  const { user } = useAuth();
 
   const productos = [
     { id: 1, nombre: "Aretes Sol", imagen: "/imagenes/primavera1.jpeg", precio: "$120", categoria: "Primavera", descripcion: "Inspirados en la energía del sol, perfectos para primavera." },
@@ -29,6 +31,18 @@ export default function ProductosPage() {
   const categorias = ["Todas", ...new Set(productos.map((p) => p.categoria))];
 
   const handleAgregar = (producto) => {
+    if (!user) {
+      Swal.fire({
+        icon: "warning",
+        title: "Debes registrarte primero",
+        text: "Para agregar productos al carrito, por favor inicia sesión o regístrate.",
+        confirmButtonText: "Ok",
+        background: "#fef3c7",
+        color: "#92400e",
+      });
+      return;
+    }
+
     agregarAlCarrito(producto);
 
     Swal.fire({
@@ -77,10 +91,8 @@ export default function ProductosPage() {
             <h2 className="text-xl font-semibold text-pink-700">{producto.nombre}</h2>
             <p className="text-gray-600 text-sm mb-2">{producto.descripcion}</p>
             <p className="text-gray-600">{producto.precio}</p>
-            <button
-              onClick={() => handleAgregar(producto)}
-              className="boton-agregar">
-                🛍️ Agregar al carrito
+            <button onClick={() => handleAgregar(producto)} className="boton-agregar">
+              🛍️ Agregar al carrito
             </button>
           </article>
         ))}

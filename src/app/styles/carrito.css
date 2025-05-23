@@ -1,0 +1,172 @@
+/* styles/carrito.css */
+
+.carrito-page {
+    padding: 3rem 1.5rem;
+    max-width: 1120px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #5a2a48;
+}
+
+.carrito-page h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #d6336c;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.carrito-vacio {
+    text-align: center;
+    font-size: 1.25rem;
+    color: #9e7ca0;
+    margin-top: 3rem;
+}
+
+.carrito-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .carrito-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.carrito-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.carrito-item {
+    display: flex;
+    align-items: center;
+    background: #fff0f6;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(214, 51, 108, 0.2);
+    gap: 1.5rem;
+}
+
+.carrito-item img,
+.carrito-item .imagen-container {
+    width: 96px;
+    height: 96px;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.carrito-item-info {
+    flex: 1;
+}
+
+.carrito-item-info h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #b72e64;
+    margin-bottom: 0.25rem;
+}
+
+.carrito-item-info p {
+    color: #7a5069;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.cantidad-control {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.cantidad-control button {
+    background-color: #d6336c;
+    border: none;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cantidad-control button:hover {
+    background-color: #a3294f;
+}
+
+.cantidad-control span {
+    font-weight: 600;
+    font-size: 1.1rem;
+    min-width: 24px;
+    text-align: center;
+}
+
+.eliminar-btn {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #d6336c;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s ease;
+}
+
+.eliminar-btn:hover {
+    color: #9b2341;
+}
+
+.resumen {
+    background-color: #ffe6f0;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 10px rgba(214, 51, 108, 0.25);
+    font-weight: 600;
+    color: #a12d5a;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.resumen h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #d6336c;
+}
+
+.resumen p {
+    font-size: 1.5rem;
+    color: #b22f63;
+}
+
+.total-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #d6336c;
+}
+
+.pago-btn {
+    background-color: #d6336c;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+    margin-top: auto;
+}
+
+.pago-btn:disabled {
+    background-color: #e7a6bf;
+    cursor: not-allowed;
+}
+
+.pago-btn:hover:not(:disabled) {
+    filter: brightness(0.9);
+}

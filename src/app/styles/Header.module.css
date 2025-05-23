@@ -1,0 +1,102 @@
+.header {
+    background: linear-gradient(to right, #d6336c, #e91e63);
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navList {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navListItem a {
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.navListItem a:hover {
+    text-decoration: underline;
+    color: #ffd1dc;
+}
+
+.perfil {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.iconoPerfil {
+    color: white;
+}
+
+.nombreUsuario {
+    font-weight: 500;
+    color: white;
+}
+
+.botonCerrar {
+    background-color: white;
+    color: #d6336c;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.botonCerrar:hover {
+    background-color: #f8c0cf;
+}
+
+.botonLogin {
+    background-color: white;
+    color: #d6336c;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.botonLogin:hover {
+    background-color: #f8c0cf;
+    color: #d6336c;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    /* Añadimos un tamaño fijo al contenedor para evitar que el logo se deforme */
+    width: 140px;
+    height: 50px;
+}
+
+/* Ajustamos la imagen para que no se estire y mantenga su proporción */
+.logo img {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    max-height: 50px;
+}
