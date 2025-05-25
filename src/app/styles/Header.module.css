@@ -1,102 +1,212 @@
+/* Contenedor del header */
 .header {
-    background: linear-gradient(to right, #d6336c, #e91e63);
-    color: white;
-    padding: 1rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(90deg, #b71c4a 0%, #d81b60 100%);
+    color: #fff;
+    padding: 1rem 3rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    user-select: none;
 }
 
+/* Navbar flex */
 .navbar {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 2rem;
 }
 
+/* Logo */
 .logo {
     display: flex;
     align-items: center;
     cursor: pointer;
+    width: 160px;
+    height: 56px;
+    transition: transform 0.2s ease;
 }
 
+.logo:hover,
+.logo:focus {
+    transform: scale(1.05);
+    outline: none;
+}
+
+.logo img {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    max-height: 56px;
+}
+
+/* Lista de navegación */
 .navList {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
 .navListItem a {
-    color: white;
-    font-weight: 500;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
     text-decoration: none;
-    transition: color 0.2s ease;
+    padding-bottom: 4px;
+    border-bottom: 3px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
 }
 
-.navListItem a:hover {
-    text-decoration: underline;
-    color: #ffd1dc;
+.navListItem a:hover,
+.navListItem a:focus {
+    color: #f8bbd0;
+    border-bottom-color: #f8bbd0;
+    outline: none;
 }
 
+/* Contenedor perfil usuario */
 .perfil {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-}
-
-.iconoPerfil {
-    color: white;
-}
-
-.nombreUsuario {
-    font-weight: 500;
-    color: white;
-}
-
-.botonCerrar {
-    background-color: white;
-    color: #d6336c;
-    border: none;
-    padding: 0.5rem 1rem;
+    gap: 1rem;
+    padding: 0.4rem 1.4rem;
+    background-color: rgba(255 255 255 / 0.15);
     border-radius: 9999px;
     font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    user-select: none;
+}
+
+.perfil:hover,
+.perfil:focus-within {
+    background-color: rgba(255 255 255 / 0.3);
+    outline: none;
+}
+
+/* Icono perfil */
+.iconoPerfil {
+    color: #fff;
+    flex-shrink: 0;
+}
+
+/* Nombre de usuario, recorte si es muy largo */
+.nombreUsuario {
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff;
+}
+
+/* Botón cerrar sesión */
+.botonCerrar {
+    background-color: #fff;
+    color: #b71c4a;
+    border: none;
+    padding: 0.5rem 1.3rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    user-select: none;
 }
 
-.botonCerrar:hover {
-    background-color: #f8c0cf;
+.botonCerrar:hover,
+.botonCerrar:focus {
+    background-color: #f48fb1;
+    color: #7b1339;
+    outline: none;
 }
 
+/* Botón iniciar sesión */
 .botonLogin {
-    background-color: white;
-    color: #d6336c;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
+    background-color: #fff;
+    color: #b71c4a;
+    font-weight: 700;
+    padding: 0.55rem 1.6rem;
     border-radius: 9999px;
     text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.botonLogin:hover,
+.botonLogin:focus {
+    background-color: #f48fb1;
+    color: #7b1339;
+    outline: none;
+}
+
+.perfil {
+    position: relative;
+    /* importante para posicionar el menú */
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.4rem 1.4rem;
+    background-color: rgba(255 255 255 / 0.15);
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+}
+
+.perfil:hover,
+.perfil:focus {
+    background-color: rgba(255 255 255 / 0.3);
+    outline: none;
+}
+
+.menuDesplegable {
+    position: absolute;
+    top: 120%;
+    /* justo debajo del perfil */
+    right: 0;
+    background-color: white;
+    color: #b71c4a;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 160px;
+    z-index: 1000;
+    padding: 0.5rem 0;
+    font-weight: 600;
+}
+
+.menuItem,
+.menuItemBoton {
+    display: block;
+    padding: 0.6rem 1.4rem;
+    color: #b71c4a;
+    text-decoration: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+    text-align: left;
+    width: 100%;
     transition: background-color 0.2s ease;
 }
 
-.botonLogin:hover {
-    background-color: #f8c0cf;
-    color: #d6336c;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    /* Añadimos un tamaño fijo al contenedor para evitar que el logo se deforme */
-    width: 140px;
-    height: 50px;
-}
-
-/* Ajustamos la imagen para que no se estire y mantenga su proporción */
-.logo img {
-    object-fit: contain;
-    width: 100%;
-    height: auto;
-    max-height: 50px;
+.menuItem:hover,
+.menuItemBoton:hover,
+.menuItem:focus,
+.menuItemBoton:focus {
+    background-color: #f8bbd0;
+    outline: none;
 }

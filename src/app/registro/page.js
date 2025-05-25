@@ -1,105 +1,87 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import '../styles/globals.css';
 
-export default function RegisterPage() {
-    const [name, setName] = useState('');
+export default function RegistroPage() {
+    const router = useRouter();
+    const [nombre, setNombre] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false);
 
-    const validateEmail = (email) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-    const handleSubmit = async (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
-        setError('');
-        if (!validateEmail(email)) {
-            setError('Por favor, ingresa un email válido');
-            return;
-        }
-        if (password.length < 6) {
-            setError('La contraseña debe tener al menos 6 caracteres');
-            return;
-        }
-        if (password !== confirmPassword) {
-            setError('Las contraseñas no coinciden');
-            return;
-        }
 
-        setLoading(true);
+        if (!nombre || !email || !password) {
+            setError('Todos los campos son obligatorios');
+            return;
+        }
 
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1500));
-            alert('¡Registro exitoso! Por favor, inicia sesión.');
-        } catch {
-            setError('Error en el registro, intenta de nuevo');
-        } finally {
-            setLoading(false);
+            const res = await fetch('/api/registro', {
+                method: 'POST',
+                body: JSON.stringify({ nombre, email, password }),
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            if (res.ok) {
+                setError('');
+                router.push('/');
+            } else {
+                setError('Error al registrar usuario');
+            }
+        } catch (err) {
+            setError('Fallo en la conexión');
         }
     };
 
     return (
         <div className="login-container">
             <div className="login-box">
-                <h1 className="login-title">Tienda de Aretes</h1>
-
+                <h1 className="login-title">Crear Cuenta</h1>
                 {error && <p className="error-message">{error}</p>}
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleRegister}>
+                    <div>
+                        <label htmlFor="nombre">Nombre</label>
+                        <input
+                            type="text"
+                            id="nombre"
+                            placeholder="Tu nombre completo"
+                            value={nombre}
+                            onChange={(e) => setNombre(e.target.value)}
+                        />
+                    </div>
 
                     <div>
                         <label htmlFor="email">Correo electrónico</label>
                         <input
-                            id="email"
                             type="email"
+                            id="email"
                             placeholder="ejemplo@correo.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            required
-                            autoComplete="email"
                         />
                     </div>
 
                     <div>
                         <label htmlFor="password">Contraseña</label>
                         <input
-                            id="password"
                             type="password"
-                            placeholder="Tu contraseña"
+                            id="password"
+                            placeholder="Mínimo 6 caracteres"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            required
-                            minLength={6}
-                            autoComplete="new-password"
                         />
                     </div>
 
-                    <div>
-                        <label htmlFor="confirmPassword">Confirmar contraseña</label>
-                        <input
-                            id="confirmPassword"
-                            type="password"
-                            placeholder="Repite tu contraseña"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            required
-                            minLength={6}
-                            autoComplete="new-password"
-                        />
-                    </div>
-
-                    <button type="submit" disabled={loading}>
-                        {loading ? 'Registrando...' : 'Crear Cuenta'}
-                    </button>
+                    <button type="submit">Registrarse</button>
                 </form>
 
                 <p className="register-text">
-                    ¿Ya tienes cuenta?{' '}
-                    <Link href="/">Inicia sesión</Link>
+                    ¿Ya tienes cuenta? <a href="/">Inicia sesión</a>
                 </p>
             </div>
         </div>

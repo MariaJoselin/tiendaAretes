@@ -1,33 +1,48 @@
 'use client';
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 
-const AuthContext = createContext(null);
+// Crear el contexto
+export const AuthContext = createContext({
+    user: '',
+    token: '',
+    login: (user, token) => { },
+    logout: () => { },
+});
+
+// Hook para consumir el contexto más fácil
+export function useAuth() {
+    return useContext(AuthContext);
+}
 
 export function AuthProvider({ children }) {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState('');
+    const [token, setToken] = useState('');
 
-    const login = (userData) => {
-        setUser(userData);
+    useEffect(() => {
+        const userStorage = localStorage.getItem('user') || '';
+        const tokenStorage = localStorage.getItem('token') || '';
+        setUser(userStorage);
+        setToken(tokenStorage);
+    }, []);
+
+    const login = (user, token) => {
+        localStorage.setItem('user', user);
+        localStorage.setItem('token', token);
+        setUser(user);
+        setToken(token);
     };
 
     const logout = () => {
-        setUser(null);
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        setUser('');
+        setToken('');
     };
 
-    const isAuthenticated = !!user;
-
     return (
-        <AuthContext.Provider value={{ user, login, logout, isAuthenticated }}>
+        <AuthContext.Provider value={{ user, token, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
-}
-
-export function useAuth() {
-    const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error('useAuth debe usarse dentro de un AuthProvider');
-    }
-    return context;
 }

@@ -1,0 +1,49 @@
+.homepage {
+    background-color: #fff0f5;
+    padding: 6rem 1.5rem;
+    text-align: center;
+}
+
+.intro {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.intro-title {
+    font-size: 3.5rem;
+    font-family: 'Dancing Script', cursive;
+    color: #db2777;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    color: #6b4c5b;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+}
+
+.gallery {
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-image:hover {
+    transform: scale(1.03);
+}

@@ -12,6 +12,30 @@
     font-size: 0.9rem;
 }
 
+.contactInfo {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.quickLinks {
+    margin-bottom: 1.5rem;
+}
+
+.quickLinks a {
+    margin: 0 10px;
+    color: #42233c;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.quickLinks a:hover,
+.quickLinks a:focus {
+    color: #d6336c;
+    outline: none;
+}
+
 .socialIcons {
     display: flex;
     justify-content: center;

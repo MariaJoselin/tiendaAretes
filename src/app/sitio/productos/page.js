@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Swal from 'sweetalert2';           // Importar SweetAlert
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
+import { useCarrito } from '../../../context/CarritoContext'; // Importa el contexto
+
 
 import '../../styles/productos.css';
 
@@ -23,7 +25,7 @@ const productos = [
         descripcion: 'Diseño sencillo en tonos plateados.',
         precio: '$12.50',
         tipo: 'Minimalistas',
-        imagen: '/imagenes/aretes-minimalistas.jpg',
+        imagen: '/imagenes/primavera2.jpeg',
     },
     {
         id: 3,
@@ -31,7 +33,7 @@ const productos = [
         descripcion: 'Estilo bohemio con materiales naturales.',
         precio: '$18.75',
         tipo: 'Bohemios',
-        imagen: '/imagenes/aretes-bohemios.jpg',
+        imagen: '/imagenes/primavera3.jpeg',
     },
     {
         id: 4,
@@ -39,7 +41,7 @@ const productos = [
         descripcion: 'Diseños modernos y simétricos.',
         precio: '$14.99',
         tipo: 'Minimalistas',
-        imagen: '/imagenes/aretes-geometricos.jpg',
+        imagen: '/imagenes/valentines1.jpeg',
     },
 ];
 
@@ -53,11 +55,15 @@ export default function ProductosPage() {
         : productos.filter(p => p.tipo === filtro);
 
     // Función para mostrar alerta al agregar al carrito
-    const agregarAlCarrito = (nombre) => {
+    const { agregarProducto } = useCarrito(); // Usar la función del contexto
+
+    const agregarAlCarrito = (producto) => {
+        agregarProducto(producto);  // Agregar al estado global
+
         Swal.fire({
             icon: 'success',
             title: '¡Añadido!',
-            text: `El producto "${nombre}" se agregó al carrito.`,
+            text: `El producto "${producto.nombre}" se agregó al carrito.`,
             timer: 1500,
             showConfirmButton: false,
             position: 'top-end',
@@ -66,6 +72,7 @@ export default function ProductosPage() {
             color: '#d6336c',
         });
     };
+
 
     return (
         <>
@@ -110,10 +117,11 @@ export default function ProductosPage() {
                             <button
                                 className="btn-carrito"
                                 aria-label={`Añadir ${nombre} al carrito`}
-                                onClick={() => agregarAlCarrito(nombre)}
+                                onClick={() => agregarAlCarrito({ id, nombre, precio: parseFloat(precio.replace('$', '')), imagen })}
                             >
                                 Añadir al carrito
                             </button>
+
                         </article>
                     ))}
                 </section>
