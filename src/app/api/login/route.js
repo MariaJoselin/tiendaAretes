@@ -1,6 +1,7 @@
 import connectToDatabase from '../../lib/db';
 import Usuario from '../../models/User';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 
 export async function POST(request) {
     try {

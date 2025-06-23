@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import User from '../../models/User'; // asegúrate que la ruta es correcta
 import connectDB from '../../lib/db'; // tu función para conectar a MongoDB
+import bcrypt from 'bcryptjs';
 
 export async function POST(req) {
     try {
