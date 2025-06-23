@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import '../styles/globals.css';
 
 export default function RegistroPage() {
@@ -81,7 +82,7 @@ export default function RegistroPage() {
                 </form>
 
                 <p className="register-text">
-                    ¿Ya tienes cuenta? <a href="/">Inicia sesión</a>
+                    ¿Ya tienes cuenta? <Link href="/">Inicia sesión</Link>
                 </p>
             </div>
         </div>

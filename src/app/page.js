@@ -2,6 +2,7 @@
 
 import { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { AuthContext } from '../context/AuthContext';
 import './styles/globals.css';
 
@@ -76,7 +77,7 @@ export default function LoginPage() {
                 </form>
 
                 <p className="register-text">
-                    ¿No tienes cuenta? <a href="/registro">Regístrate aquí</a>
+                    ¿No tienes cuenta? <Link href="/registro">Regístrate aquí</Link>
                 </p>
             </div>
         </div>
