@@ -46,10 +46,7 @@ export default function LoginPage() {
 
     return (
         <div className="login-container">
-            <Head>
                 <title>Matatena - Inicia Sesión</title>
-                <meta name="description" content="Inicia sesión en Matatena para acceder a tus actividades, recursos y más." />
-            </Head>
 
             <div className="login-box">
                 <h1 className="login-title">Iniciar Sesión</h1>
