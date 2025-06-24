@@ -46,6 +46,7 @@ export default function LoginPage() {
 
     return (
         <div className="login-container">
+            <title>Matatena</title>
             <div className="login-box">
                 <h1 className="login-title">Iniciar Sesión</h1>
                 {error && <p className="error-message">{error}</p>}
