@@ -1,4 +1,3 @@
-// context/CarritoContext.js
 "use client";
 import { createContext, useContext, useState } from "react";
 
@@ -28,8 +27,36 @@ export function CarritoProvider({ children }) {
 
     const vaciarCarrito = () => setCarrito([]);
 
+    // agrege las funciones de incrementar y decrementar
+    const incrementarCantidad = (id) => {
+        setCarrito((prev) =>
+            prev.map((item) =>
+                item.id === id ? { ...item, cantidad: item.cantidad + 1 } : item
+            )
+        );
+    };
+
+    const decrementarCantidad = (id) => {
+        setCarrito((prev) =>
+            prev.map((item) =>
+                item.id === id
+                    ? { ...item, cantidad: item.cantidad > 1 ? item.cantidad - 1 : 1 }
+                    : item
+            )
+        );
+    };
+
     return (
-        <CarritoContext.Provider value={{ carrito, agregarProducto, eliminarProducto, vaciarCarrito }}>
+        <CarritoContext.Provider
+            value={{
+                carrito,
+                agregarProducto,
+                eliminarProducto,
+                vaciarCarrito,
+                incrementarCantidad, 
+                decrementarCantidad, 
+            }}
+        >
             {children}
         </CarritoContext.Provider>
     );

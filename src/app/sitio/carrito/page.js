@@ -10,7 +10,14 @@ import "../../styles/carrito.css";
 import { useCarrito } from "@/context/CarritoContext"; // 👈 importar el contexto
 
 export default function CarritoPage() {
-    const { carrito, eliminarProducto, vaciarCarrito } = useCarrito();
+    const {
+    carrito,
+    eliminarProducto,
+    vaciarCarrito,
+    incrementarCantidad,
+    decrementarCantidad,
+} = useCarrito();
+
 
     const total = carrito.reduce(
         (acc, item) => acc + item.precio * item.cantidad,
