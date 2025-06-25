@@ -35,6 +35,7 @@ export default function Header() {
 
     return (
         <header className={styles.header}>
+            <meta name="description" content="Inicia sesión en Matatena para acceder a tus actividades, recursos y más." />
             <nav className={styles.navbar}>
                 <Link href="/sitio" className={styles.logo}>
                     <Image

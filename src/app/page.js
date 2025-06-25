@@ -3,6 +3,7 @@
 import { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Head from 'next/head'; // <--- Importar Head
 import { AuthContext } from '../context/AuthContext';
 import './styles/globals.css';
 
@@ -33,8 +34,7 @@ export default function LoginPage() {
 
             if (res.ok) {
                 setError('');
-                // Usa los campos correctos según tu contexto
-                login(data.nombre, data.token);  // Asegúrate que 'nombre' es lo que el backend envía
+                login(data.nombre, data.token);
                 router.push('/sitio');
             } else {
                 setError(data.message || 'Credenciales incorrectas');
@@ -46,6 +46,8 @@ export default function LoginPage() {
 
     return (
         <div className="login-container">
+                <title>Matatena - Inicia Sesión</title>
+
             <div className="login-box">
                 <h1 className="login-title">Iniciar Sesión</h1>
                 {error && <p className="error-message">{error}</p>}
