@@ -1,94 +1,198 @@
 'use client';
 
+import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useContext, useState, useRef, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { UserCircle } from 'lucide-react';
-import styles from '../app/styles/Header.module.css';
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Box,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Menu,
+  MenuItem,
+  Avatar,
+  Button,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import { AuthContext } from '../context/AuthContext';
+import NextLink from 'next/link';
 
 export default function Header() {
-    const { user, logout } = useContext(AuthContext); // ← CAMBIO AQUÍ
-    const router = useRouter();
+  const { user, logout } = useContext(AuthContext);
+  const router = useRouter();
 
-    const [menuAbierto, setMenuAbierto] = useState(false);
-    const perfilRef = useRef(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
-    const cerrarSesion = () => {
-        logout();
-        router.push('/');
-    };
+  const handleDrawerToggle = () => {
+    setDrawerOpen((prev) => !prev);
+  };
 
-    // Cierra el menú al hacer clic fuera
-    useEffect(() => {
-        const handleClickFuera = (event) => {
-            if (perfilRef.current && !perfilRef.current.contains(event.target)) {
-                setMenuAbierto(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClickFuera);
-        return () => {
-            document.removeEventListener('mousedown', handleClickFuera);
-        };
-    }, []);
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-    return (
-        <header className={styles.header}>
-            <meta name="description" content="Inicia sesión en Matatena para acceder a tus actividades, recursos y más." />
-            <nav className={styles.navbar}>
-                <Link href="/sitio" className={styles.logo}>
-                    <Image
-                        src="/imagenes/logo3.png"
-                        alt="Logo Aretes"
-                        width={140}
-                        height={50}
-                        priority
-                    />
-                </Link>
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
 
-                <ul className={styles.navList}>
-                    <li className={styles.navListItem}>
-                        <Link href="/sitio/productos">Productos</Link>
-                    </li>
-                    <li className={styles.navListItem}>
-                        <Link href="/sitio/contacto">Contacto</Link>
-                    </li>
-                    <li className={styles.navListItem}>
-                        <Link href="/sitio/carrito">Carrito</Link>
-                    </li>
-                </ul>
+  const handleLogout = () => {
+    logout();
+    handleMenuClose();
+    router.push('/');
+  };
 
-                {user ? (
-                    <div
-                        className={styles.perfil}
-                        onClick={() => setMenuAbierto(!menuAbierto)}
-                        ref={perfilRef}
-                        tabIndex={0}
-                        role="button"
-                        aria-haspopup="true"
-                        aria-expanded={menuAbierto}
-                    >
-                        <UserCircle size={28} className={styles.iconoPerfil} />
-                        <span className={styles.nombreUsuario}>{user}</span> {/* ← CAMBIO AQUÍ */}
+  const menuItems = [
+    { text: 'Productos', href: '/sitio/productos' },
+    { text: 'Contacto', href: '/sitio/contacto' },
+    { text: 'Carrito', href: '/sitio/carrito' },
+  ];
 
-                        {menuAbierto && (
-                            <div className={styles.menuDesplegable}>
-                                <Link href="/sitio/perfil" className={styles.menuItem}>
-                                    Mi Perfil
-                                </Link>
-                                <button onClick={cerrarSesion} className={styles.menuItemBoton}>
-                                    Cerrar sesión
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                ) : (
-                    <Link href="/" className={styles.botonLogin}>
-                        Iniciar sesión
-                    </Link>
-                )}
-            </nav>
-        </header>
-    );
+  return (
+    <>
+      <AppBar position="sticky" sx={{ bgcolor: '#b71c4a' }}>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Link href="/sitio" passHref>
+            <Box
+              sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', textDecoration: 'none' }}
+            >
+              <Image src="/imagenes/logo3.png" alt="Logo Aretes" width={140} height={50} priority />
+            </Box>
+          </Link>
+
+          {/* Menu desktop */}
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 3 }}>
+            {menuItems.map(({ text, href }) => (
+              <Button
+                key={text}
+                LinkComponent={NextLink}
+                href={href}
+                sx={{
+                  color: '#fff',
+                  fontWeight: 600,
+                  '&:hover': { backgroundColor: 'rgba(255,255,255,0.15)' },
+                }}
+              >
+                {text}
+              </Button>
+            ))}
+
+            {user ? (
+              <>
+                <Button
+                  startIcon={<AccountCircle />}
+                  onClick={handleMenuOpen}
+                  sx={{ color: '#fff', textTransform: 'none', fontWeight: 600 }}
+                >
+                  {user}
+                </Button>
+                <Menu
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={handleMenuClose}
+                  anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                  transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                >
+                  <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
+                </Menu>
+              </>
+            ) : (
+              <Button
+                LinkComponent={NextLink}
+                href="/"
+                sx={{
+                  bgcolor: '#fff',
+                  color: '#fff',
+                  fontWeight: 700,
+                  '&:hover': { bgcolor: '#f48fb1' },
+                }}
+              >
+                Iniciar sesión
+              </Button>
+            )}
+          </Box>
+
+          {/* Menu mobile */}
+          <IconButton
+            edge="end"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleDrawerToggle}
+            sx={{ display: { md: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+
+      <Drawer
+  anchor="right"
+  open={drawerOpen}
+  onClose={handleDrawerToggle}
+  PaperProps={{ sx: { bgcolor: '#b71c4a', color: '#fff', width: 250, paddingTop: 2 } }}
+>
+  <List>
+    {menuItems.map(({ text, href }) => (
+      <ListItem
+        key={text}
+        component={Link}
+        href={href}
+        onClick={handleDrawerToggle}
+        sx={{ cursor: 'pointer' }}
+      >
+        <ListItemText primary={text} sx={{ color: '#fff' }} />
+      </ListItem>
+    ))}
+
+    <Box sx={{ borderTop: '1px solid rgba(255,255,255,0.3)', mt: 2, pt: 2 }}>
+      {user ? (
+        <>
+          <ListItem
+            onClick={handleMenuOpen}
+            sx={{ display: 'flex', alignItems: 'center', gap: 1, cursor: 'pointer' }}
+          >
+            <AccountCircle />
+            <ListItemText primary={user} sx={{ color: '#fff' }} />
+          </ListItem>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+          >
+            <MenuItem
+              onClick={() => {
+                handleLogout();
+                setDrawerOpen(false);
+              }}
+            >
+              Cerrar sesión
+            </MenuItem>
+          </Menu>
+        </>
+      ) : (
+        <ListItem
+          component={Link}
+          href="/"
+          onClick={handleDrawerToggle}
+          sx={{ cursor: 'pointer' }}
+        >
+          <ListItemText primary="Iniciar sesión" sx={{ color: '#fff' }} />
+        </ListItem>
+      )}
+    </Box>
+  </List>
+</Drawer>
+
+    </>
+  );
 }

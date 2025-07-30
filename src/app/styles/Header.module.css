@@ -210,3 +210,101 @@
     background-color: #f8bbd0;
     outline: none;
 }
+
+/* ---------- Responsive ---------- */
+
+.menuToggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .menuToggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        z-index: 1001;
+    }
+
+    .barra {
+        width: 24px;
+        height: 3px;
+        background-color: #fff;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .navList {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #b71c4a;
+        padding: 1rem 0;
+        margin-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .navListAbierto {
+        display: flex;
+    }
+
+    .navListItem {
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+
+    .perfil {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .menuDesplegable {
+        position: static;
+        box-shadow: none;
+        background-color: transparent;
+        padding: 0;
+        margin-top: 0.5rem;
+    }
+
+    .menuItem,
+    .menuItemBoton {
+        background-color: #fff;
+        color: #b71c4a;
+        border-radius: 8px;
+        margin: 0.25rem auto;
+        width: 90%;
+        text-align: center;
+    }
+
+    .botonLogin {
+        width: 90%;
+        justify-content: center;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 120px;
+        height: 40px;
+    }
+
+    .nombreUsuario {
+        max-width: 90px;
+    }
+
+    .perfil {
+        font-size: 0.9rem;
+        padding: 0.3rem 1rem;
+    }
+}
